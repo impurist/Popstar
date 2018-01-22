@@ -1,0 +1,26 @@
+{
+  "name": "popstar",
+  "version": "0.0.1",
+  "description": "Page Object Pattern implementation in ES6 for automated UI testing using a Node based runner",
+  "main": "index.js",
+  "scripts": {
+    "test": "yarn test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/impurist/Popstar.git"
+  },
+  "keywords": [
+    "Page",
+    "Object",
+    "Pattern",
+    "Node"
+  ],
+
+  "author": "Steven Holloway",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/impurist/Popstar/issues"
+  },
+  "homepage": "https://github.com/impurist/Popstar#readme"
+}
