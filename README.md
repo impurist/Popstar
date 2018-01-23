@@ -28,9 +28,10 @@ import { popstar } from '../../support/PopstarInit';
 
 defineSupportCode(({ When }) => {
   When(/^the user searches for "([^"]*)"$/, async (searchTerm) => {
-    await popstar().onPageWith('Search', (page) => {
+    await popstar().onPageWith('SearchForm', (page) => {
       client.clearValue(page.searchInput);
-      return client.setValue(page.searchInput, searchTerm);
+      client.setValue(page.searchInput, searchTerm);
+      client.click(page.searchButton);
     });
   });
 });
