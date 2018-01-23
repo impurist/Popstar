@@ -1,7 +1,7 @@
 import _ from 'lodash';
+import fs from 'fs';
 
-const Page = () => {
-};
+const Page = () => {};
 
 const Popstar = (mixinPath) => {
   const addMixin = (page, mixin) => {
@@ -14,34 +14,36 @@ const Popstar = (mixinPath) => {
   };
 
   const loadModule = (mixin) => {
-    return require(`${mixinPath}/PageWith${mixin}`);
+    const modulePath = `${mixinPath}/PageWith${mixin}`;
+    if(!fs.existsSync(`${modulePath}.js`)) {
+      throw new Error(`Module path: "${modulePath}" does not exist`);
+    }
+    return require(modulePath);
   };
 
-  return () => {
-    return {
-      onPageWith: (...args) => {
-        let mixins = [];
-        let callback;
-        if (_.isFunction(_.last(args))) {
-          callback = args.pop();
-          mixins = args;
-        }
-        if (!mixins.length) {
-          throw new Error('You must supply at least one mixin');
-        }
-        return onPage((page) => {
-          _(mixins).each((mixin) => {
-            const loadedMixin = loadModule(mixin);
-            if (_.isEmpty(loadedMixin)) {
-              throw new Error(`Mixin: ${loadedMixin} is empty.`);
-            }
-            addMixin(page, loadedMixin);
-          });
-          return callback(page);
+  return {
+    onPageWith: (...args) => {
+      let mixins = [];
+      let callback;
+      if (_.isFunction(_.last(args))) {
+        callback = args.pop();
+        mixins = args;
+      }
+      if (!mixins.length) {
+        throw new Error('You must supply at least one mixin');
+      }
+      return onPage((page) => {
+        _(mixins).each((mixin) => {
+          const loadedMixin = loadModule(mixin);
+          if (_.isEmpty(loadedMixin)) {
+            throw new Error(`Mixin: ${loadedMixin} is empty.`);
+          }
+          addMixin(page, loadedMixin);
         });
-      },
-    };
+        return callback(page);
+      });
+    },
   };
 };
 
-module.exports.popstar = Popstar;
+module.exports.Popstar = Popstar;
