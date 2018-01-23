@@ -22,6 +22,7 @@ const Popstar = (mixinPath) => {
   };
 
   return {
+    mixinPath: mixinPath,
     onPageWith: (...args) => {
       let mixins = [];
       let callback;

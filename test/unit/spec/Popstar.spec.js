@@ -1,13 +1,20 @@
 import path from 'path'
-
-import {Popstar} from '../../../src/Popstar';
+import { Popstar } from '../../../src/Popstar';
+import { popstar } from '../../../src/index';
 
 describe('Popstar', () => {
-  const popstar = Popstar(path.join(process.cwd(), 'test', 'test_mixins'))
 
-  describe('initialise with valid mixin path', () => {
+  describe('popstar is an object with properties and functions', () => {
     it('returns an object', () => {
       expect(typeof popstar).toBe('object')
+    });
+
+    it('has a default mixin path', function () {
+      expect(popstar.mixinPath).toEqual(`${process.cwd()}/test/e2e/page_mixins`)
+    });
+
+    it('has an onPageWith function', () => {
+      expect(typeof popstar.onPageWith).toBe('function');
     });
   });
 
@@ -21,7 +28,7 @@ describe('Popstar', () => {
     it('throws error when mixin path is invalid', () => {
       expect(() => {
         popstar.onPageWith('NonExistent', (page) => {})
-      }).toThrow(`Module path: "${process.cwd()}/test/test_mixins/PageWithNonExistent" does not exist`);
+      }).toThrow(`Module path: "${process.cwd()}/test/e2e/page_mixins/PageWithNonExistent" does not exist`);
     });
   });
 
@@ -38,5 +45,13 @@ describe('Popstar', () => {
         expect(page.dynamicSelector(2)).toEqual("div#dynamic-selector-2");
       });
     });
-  })
+  });
+
+  describe('override default mixin path with custom init', () => {
+    it('has custom mixin path', () => {
+      const custom_mixin_path = `${process.cwd()}/test/e2e/custom_mixins`;
+      const popstar = Popstar(custom_mixin_path);
+      expect(popstar.mixinPath).toEqual(custom_mixin_path);
+    });
+  });
 });
