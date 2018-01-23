@@ -15,9 +15,17 @@ module.exports.popstar = Popstar('path_to/page_mixins');
 
 Create a mixin file in the mixin path, for example: PageWithSearchForm:
 ```javascript
+import { client } from 'nightwatch-cucumber';
+
 module.exports = {
-  searchInput: 'input#search-term',
-  searchButton: 'button#search-button'
+  search: (searchTerm) => {
+    const inputSelector = 'input#search-term';
+    const searchButtonSelector = 'button#search-button'
+    client.clearValue(selector);
+    client.setValue(selector, searchTerm);
+    client.click(searchButtonSelector);
+  },
+  
 }
 ```
 
@@ -30,14 +38,12 @@ nightwatch-cucumber example:
 
 import { client } from 'nightwatch-cucumber';
 import { defineSupportCode } from 'cucumber';
-import { popstar } from '../../support/PopstarInit';
+import { popstar } from 'path_to/PopstarInit';
 
 defineSupportCode(({ When }) => {
   When(/^the user searches for "([^"]*)"$/, async (searchTerm) => {
-    await popstar().onPageWith('SearchForm', (page) => {
-      client.clearValue(page.searchInput);
-      client.setValue(page.searchInput, searchTerm);
-      client.click(page.searchButton);
+    await popstar.onPageWith('SearchForm', (page) => {
+      page.search(searchTerm);
     });
   });
 });
