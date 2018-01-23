@@ -20,6 +20,10 @@ module.exports = {
 ```
 
 nightwatch-cucumber example:
+```gherkin
+ When the user searches for "Page Object Pattern"
+```
+
 ```javascript
 
 import { client } from 'nightwatch-cucumber';
