@@ -49,7 +49,7 @@ defineSupportCode(({ When }) => {
 });
 ```
 # Todo
-Write more tests and improve the api.
-Add e2e examples.
-Add build for use in non ES6 projects
+* Write more tests and improve the api.
+* Add e2e tests.
+* Add build for use in non ES6 projects
 
