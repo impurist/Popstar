@@ -1,6 +1,6 @@
 {
   "name": "popstar",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Page Object Pattern implementation in ES6 for automated UI testing using a Node based runner",
   "author": "Steven Holloway",
   "license": "MIT",
