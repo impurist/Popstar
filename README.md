@@ -7,17 +7,12 @@ I found the nightwatch page object implementation somewhat limited and decided t
 
 # Usage
 
-Create PopstarInit.js containing the following code:
-```javascript
-import { Popstar } from 'Popstar';
-module.exports.popstar = Popstar('path_to/page_mixins');
-```
-
-Create a mixin file in the mixin path, for example: PageWithSearchForm:
+Create a mixin file in your-project/test/e2e/page_mixins. 
+Example: PageWithSearchForm:
 ```javascript
 import { client } from 'nightwatch-cucumber';
 
-module.exports = {
+module.exports.searchForm = {
   search: (searchTerm) => {
     const inputSelector = 'input#search-term';
     const searchButtonSelector = 'button#search-button'
@@ -38,11 +33,11 @@ nightwatch-cucumber example:
 
 import { client } from 'nightwatch-cucumber';
 import { defineSupportCode } from 'cucumber';
-import { popstar } from 'path_to/PopstarInit';
+import { onPageWith } from 'popstar';
 
 defineSupportCode(({ When }) => {
   When(/^the user searches for "([^"]*)"$/, async (searchTerm) => {
-    await popstar.onPageWith('SearchForm', (page) => {
+    await onPageWith('SearchForm', (page) => {
       page.search(searchTerm);
     });
   });
@@ -51,5 +46,4 @@ defineSupportCode(({ When }) => {
 # Todo
 * Write more tests and improve the api.
 * Add e2e tests.
-* Add build for use in non ES6 projects
 
