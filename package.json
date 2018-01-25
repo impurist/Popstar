@@ -22,10 +22,14 @@
   "engines": {
     "yarn": "*"
   },
+  "jest": {
+    "collectCoverage": true,
+    "coverageDirectory": "<rootDir>/test/unit/coverage"
+  },
   "scripts": {
     "build": "babel src --presets babel-preset-es2015 --out-dir distribution",
     "prepublish": "npm run build",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
