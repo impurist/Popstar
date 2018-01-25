@@ -30,6 +30,17 @@ describe('Popstar', () => {
         onPageWith('NonExistent', (page) => {})
       }).toThrow(`Module path: "${process.cwd()}/test/e2e/page_mixins/PageWithNonExistent" does not exist`);
     });
+
+    it('throws error when mixin is empty', function () {
+      expect(() => {
+        onPageWith('EmptyMixin', (page) => {})
+      }).toThrow('Mixin: [object Object] is empty.');
+    });
+    it('throws error when no callback is provided', function () {
+      expect(() => {
+        onPageWith('EmptyMixin')
+      }).toThrow('You must supply a callback Example:"(page) => page.mixinName.action"');
+    });
   });
 
   describe('Mixes in properties and functions from mixins into page', () => {

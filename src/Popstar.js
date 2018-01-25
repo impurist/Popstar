@@ -29,6 +29,8 @@ const Popstar = (mixinPath) => {
       if (_.isFunction(_.last(args))) {
         callback = args.pop();
         mixins = args;
+      } else {
+        throw new Error('You must supply a callback Example:"(page) => page.mixinName.action"');
       }
       if (!mixins.length) {
         throw new Error('You must supply at least one mixin');
