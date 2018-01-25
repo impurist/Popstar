@@ -8,7 +8,7 @@
     "url": "https://github.com/impurist/Popstar/issues"
   },
   "homepage": "https://github.com/impurist/Popstar#readme",
-  "main": "index.js",
+  "main": "distribution/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/impurist/Popstar.git"
@@ -23,6 +23,8 @@
     "yarn": "*"
   },
   "scripts": {
+    "build": "babel src --presets babel-preset-es2015 --out-dir distribution",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "devDependencies": {

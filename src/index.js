@@ -1,4 +1,3 @@
-
 import { Popstar } from './Popstar';
 
 const mixinPath = `${process.cwd()}/test/e2e/page_mixins`;
