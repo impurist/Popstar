@@ -9,4 +9,7 @@ module.exports.duckDuckGo = {
     client.setValue(inputSelector, searchTerm);
     client.click(searchButtonSelector);
   },
+  searchResults: () => {
+    return '.result__body'
+  }
 }
