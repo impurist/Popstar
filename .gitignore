@@ -60,3 +60,5 @@ typings/
 /.idea
 /distribution
 /.DS_Store
+test/e2e/screenshots/*
+test/e2e/reports/*
