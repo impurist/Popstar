@@ -1,40 +1,34 @@
 import {
-  client
+  client,
 } from 'nightwatch-cucumber';
 
 import {
-  defineSupportCode
+  defineSupportCode,
 } from 'cucumber';
 
 import {
-  _
+  _,
 } from 'lodash';
 
 import {
-  onPageWith
+  onPageWith,
 } from '../../../../distribution/index';
 
 defineSupportCode(({
   Given,
   When,
-  Then
+  Then,
 }) => {
-
   Given('the user has loaded {string}', async (string) => {
-    await client.url(`https://${string}`)
+    await client.url(`https://${string}`);
   });
 
   When('the user searches for {string}', async (string) => {
-    await onPageWith('DuckDuckGo', (page) => {
-      return page.duckDuckGo.search(string);
-    });
+    await onPageWith('DuckDuckGo', page => page.duckDuckGo.search(string));
   });
 
   Then('the will see results like the following', async (dataTable) => {
     const content = _.first(dataTable.hashes()).Content;
-    await onPageWith('DuckDuckGo', (page) => {
-      return client.expect.element(page.duckDuckGo.searchResults()).text.to.contain(content);
-    });
+    await onPageWith('DuckDuckGo', page => client.expect.element(page.duckDuckGo.searchResults()).text.to.contain(content));
   });
-
 });

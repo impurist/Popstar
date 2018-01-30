@@ -1,3 +1,3 @@
 module.exports = {
-  staticSelector: 'div#static-selector'
+  staticSelector: 'div#static-selector',
 };

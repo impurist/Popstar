@@ -13,16 +13,18 @@ const Popstar = (mixinPath) => {
     return callback(page);
   };
 
+  /* eslint-disable global-require, import/no-dynamic-require */
   const loadModule = (mixin) => {
     const modulePath = `${mixinPath}/PageWith${mixin}`;
-    if(!fs.existsSync(`${modulePath}.js`)) {
+    if (!fs.existsSync(`${modulePath}.js`)) {
       throw new Error(`Module path: "${modulePath}" does not exist`);
     }
     return require(modulePath);
   };
+  /* eslint-enable global-require, import/no-dynamic-require */
 
   return {
-    mixinPath: mixinPath,
+    mixinPath,
     onPageWith: (...args) => {
       let mixins = [];
       let callback;
