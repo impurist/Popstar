@@ -29,7 +29,8 @@
   "scripts": {
     "build": "babel src --presets babel-preset-es2015 --out-dir distribution",
     "prepublish": "npm run build",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "e2e": "nightwatch -c test/e2e/nightwatch.conf.js -e chrome"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -45,13 +46,14 @@
     "babel-preset-stage-2": "^6.22.0",
     "babel-register": "^6.22.0",
     "chai": "^4.1.2",
-    "chromedriver": "^2.33.2",
+    "chromedriver": "^2.35.0",
     "cucumber": "^3.0.3",
     "jest": "^21.2.0",
     "lodash": "^4.17.4",
     "nightwatch": "^0.9.16",
-    "nightwatch-cucumber": "^8.2.11",
-    "selenium-server": "^3.6.0",
+    "nightwatch-cucumber": "^9.0.0",
+    "phantomjs-prebuilt": "^2.1.16",
+    "selenium-server": "^3.8.1",
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.9.1",
