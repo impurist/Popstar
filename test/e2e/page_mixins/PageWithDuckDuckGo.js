@@ -1,5 +1,5 @@
 import {
-  client
+  client,
 } from 'nightwatch-cucumber';
 
 module.exports.duckDuckGo = {
@@ -9,7 +9,5 @@ module.exports.duckDuckGo = {
     client.setValue(inputSelector, searchTerm);
     client.click(searchButtonSelector);
   },
-  searchResults: () => {
-    return '.result__body'
-  }
-}
+  searchResults: () => '.result__body',
+};
